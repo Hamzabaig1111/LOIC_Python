@@ -48,14 +48,14 @@ def lazerParseHook(event):
 
     print "Splitting finished, status:", status
 
-    for x in range(0, len(s), 2):
-        if s[x] == "targetip" or s[x] == "targethost":
+    for x in range(0, len(s), 2): #for mention the range
+        if s[x] == "targetip" or s[x] == "targethost":  #to mention or Initilize target for attack
             try:
                 targetip = socket.gethostbyname(s[x+1])
             except socket.gaierror, err:
-                print "Can't resolve hostname %s: %s" % (s[x+1], err[1])
+                print "Can't resolve hostname %s: %s" % (s[x+1], err[1]) #statement use to make sure if the target IP is pingged then print the name and value for
                 sys.exit() 
-        elif s[x] == "timeout":
+        elif s[x] == "timeout": #condition use if ping or handshake time out or session ping timeout
             if s[x+1].isdigit():
                 timeout = int(s[x+1])
                 if(timeout < -1):
@@ -71,7 +71,7 @@ def lazerParseHook(event):
                     port = None
                 elif port < 1:
                     port = None
-        elif s[x] == "method":
+        elif s[x] == "method": #defination for methods to deploys the method
             methodTemp = s[x+1].split(",")
             method = []
             for x in methodTemp:
